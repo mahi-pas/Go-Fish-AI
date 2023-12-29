@@ -24,7 +24,8 @@ if __name__ == '__main__':
         hands[i].append(cards.pop())
         i+=1
         if (i == num_players): i = 0
-    
-    
 
-    
+    players = []
+    for i in range(num_players):
+        players.append(Player(i, hands[i]))
+        print(players[i])
