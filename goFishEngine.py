@@ -19,13 +19,14 @@ if __name__ == '__main__':
 
     num_players = int(sys.argv[1])
     hands = [[] for _ in range(num_players)]
-    i = 0
-    while(len(cards)>0): # Distribute cards
-        hands[i].append(cards.pop())
-        i+=1
-        if (i == num_players): i = 0
+    cards_per_hand = 7 if (num_players <= 3) else 5
+    # Distribute cards
+    for i in range(num_players):
+        for _ in range(cards_per_hand):
+            hands[i].append(cards.pop())
 
     players = []
     for i in range(num_players):
         players.append(Player(i, hands[i]))
         print(players[i])
+    print("Deck:", cards)
