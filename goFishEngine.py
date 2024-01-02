@@ -3,6 +3,12 @@ import random
 import numpy as np
 from goFishPlayer import *
 
+
+def print_game(players, deck):
+    for player in players:
+        print(player)
+    print("Deck:",deck)
+
 if __name__ == '__main__':
     n = len(sys.argv)
     if (n<2):
@@ -21,12 +27,19 @@ if __name__ == '__main__':
     hands = [[] for _ in range(num_players)]
     cards_per_hand = 7 if (num_players <= 3) else 5
     # Distribute cards
-    for i in range(num_players):
-        for _ in range(cards_per_hand):
+    for _ in range(cards_per_hand):
+        for i in range(num_players):
+            if (len(cards) == 0): break
             hands[i].append(cards.pop())
 
     players = []
     for i in range(num_players):
         players.append(Player(i, hands[i]))
-        print(players[i])
-    print("Deck:", cards)
+    print_game(players, cards)
+
+
+    #Play!
+    winner = None
+    while (not winner):
+        for i in range(num_players):
+            players[i].play()
